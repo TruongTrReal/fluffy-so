@@ -1,5 +1,5 @@
-__pycache__/
-mysql_functions
+__pycache__
+mysql_functions.py
 test_time.py
 test.py
-myenv
+myenv/
