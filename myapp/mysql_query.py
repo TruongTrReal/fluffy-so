@@ -30,7 +30,7 @@ def connect_sql():
 def account_exists(conn, user_id, account_number):
     cursor = conn.cursor()
 
-    query = f"SELECT account_id FROM accounts WHERE account_number = {account_number} AND user_id = {user_id};"
+    query = f"SELECT account_id FROM accounts WHERE account_number = '{account_number}' AND user_id = {user_id};"
     cursor.execute(query)
 
     result = cursor.fetchone()
@@ -43,7 +43,7 @@ def create_or_get_account(conn, user_id, account_number):
 
     try:
         if account_exists(conn, user_id, account_number):
-            query = f"SELECT account_id FROM accounts WHERE account_number = {account_number} AND user_id = {user_id};"
+            query = f"SELECT account_id FROM accounts WHERE account_number = '{account_number}' AND user_id = {user_id};"
             cursor.execute(query)
             result = cursor.fetchone()
             account_id = result[0]
@@ -51,11 +51,11 @@ def create_or_get_account(conn, user_id, account_number):
 
         else: 
             print("creating the account.")
-            query1 = f"INSERT INTO accounts (user_id, account_number) VALUES (1, {account_number})"
+            query1 = f"INSERT INTO accounts (user_id, account_number) VALUES (1, '{account_number}')"
             cursor.execute(query1)
-            query3 = f"INSERT INTO accounts (user_id, account_number) VALUES (3, {account_number})"
+            query3 = f"INSERT INTO accounts (user_id, account_number) VALUES (3, '{account_number}')"
             cursor.execute(query3)
-            query6 = f"INSERT INTO accounts (user_id, account_number) VALUES (6, {account_number})"
+            query6 = f"INSERT INTO accounts (user_id, account_number) VALUES (6, '{account_number}')"
             cursor.execute(query6)
             conn.commit()
             # Handle the case where the account creation was not successful
@@ -68,10 +68,10 @@ def create_or_get_account(conn, user_id, account_number):
         conn.rollback()
         return None
     
-
     finally:
         # Close the cursor
         cursor.close()
+
 
 def get_account_summary(conn, account_id):
     cursor = conn.cursor()

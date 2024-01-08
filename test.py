@@ -5,7 +5,7 @@ conn = connect_sql()
 
 # ADD OR CREATE ACCOUNT NUMBER 
 user_id_to_associate = 1
-account_number_to_check = 123456
+account_number_to_check = "AAAAAA"
 account_id = create_or_get_account(conn, user_id_to_associate, account_number_to_check)
 print(account_id)
 if account_id:
