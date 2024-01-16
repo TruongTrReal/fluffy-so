@@ -8,6 +8,12 @@ def connect_sql():
     password = "HykJ5ctNhG"
     database = "sql12674443"
 
+    # local mySQL 
+    # host = "localhost"
+    # user = "root"
+    # password = "NewPass123@@"
+    # database = "so"
+
     # Establish a connection to MySQL
     conn = mysql.connector.connect(
         host=host,

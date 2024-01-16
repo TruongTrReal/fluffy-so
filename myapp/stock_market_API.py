@@ -17,14 +17,17 @@ def get_today_date_in_vietnam():
         today_date = last_friday.strftime("%Y-%m-%d")
     elif 5 > current_datetime.weekday() > 0:
         # If it's Tuesday to Friday, return yesterday's date
-        yesterday = current_datetime - timedelta(days=1)
+        yesterday = current_datetime
         today_date = yesterday.strftime("%Y-%m-%d")
+    elif current_datetime.weekday() == 5:
+        # If it's Saturday, return the date of the last Friday
+        last_friday = current_datetime - timedelta(days=current_datetime.weekday() + 1)
+        today_date = last_friday.strftime("%Y-%m-%d")
     else:
-        # If it's Saturday or Sunday, return the date of the last Friday
+        # If it's Sunday, return the date of the last Friday
         last_friday = current_datetime - timedelta(days=current_datetime.weekday() + 2)
         today_date = last_friday.strftime("%Y-%m-%d")
 
-    print(today_date)
     return today_date
 
 def get_date_x_days_before(input_date_str, x):
